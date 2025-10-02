@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model JapaneseForm {
+  id                       String   @id @default(uuid())
+  incrementId              Int      @unique @default(autoincrement()) // Auto-incrementing number
+  referenceNumber          String?  @unique // Stored as "J0001"
+  fullName                 String
+  furigana                 String
+  affiliation              String?
+  position                 String?
+  country                  String
+  email                    String   @unique
+  phone                    String
+  reasonsForConference     String[]
+  questionsForPanelists    String?
+  bringChildren            Boolean  @default(false)
+  numberOfChildren         Int?
+  requiresNursing          Boolean  @default(false)
+  consentToChildcarePolicy Boolean  @default(false)
+  consentToPrivacyPolicy   Boolean  @default(false)
+  createdAt                DateTime @default(now())
+  updatedAt                DateTime @updatedAt
+}
+
+model EnglishForm {
+  id                       String   @id @default(uuid())
+  incrementId              Int      @unique @default(autoincrement()) // Auto-incrementing number
+  referenceNumber          String?  @unique // Stored as "E0001"
+  title                    String?
+  otherTitle               String?
+  firstName                String
+  lastName                 String
+  affiliation              String?
+  position                 String?
+  country                  String
+  email                    String   @unique
+  phone                    String
+  reasonsForConference     String[]
+  questionsForPanelists    String?
+  bringChildren            Boolean  @default(false)
+  numberOfChildren         Int?
+  requiresNursing          Boolean  @default(false)
+  consentToChildcarePolicy Boolean  @default(false)
+  consentToPrivacyPolicy   Boolean  @default(false)
+  createdAt                DateTime @default(now())
+  updatedAt                DateTime @updatedAt
+}
+
+model ChildcareCapacity {
+  id        Int      @id @default(1)
+  reached   Boolean  @default(false)
+  updatedAt DateTime @updatedAt
+
+  @@map("childcare_capacity")
+}
