@@ -19,6 +19,9 @@ export const japaneseFormSchema = z
 			.string()
 			.min(1, "電話番号を入力してください")
 			.max(20, "電話番号は２０文字以内を入力してください"),
+		attendanceDays: z
+			.array(z.string())
+			.min(1, "参加を希望する日にちを少なくとも1つ選択してください"),
 		country: z
 			.string()
 			.min(1, "国を選択してください")
@@ -60,11 +63,16 @@ export const japaneseFormSchema = z
 				furigana: data.furigana,
 				email: data.email,
 				phone: data.phone,
+				attendanceDays: data.attendanceDays,
 				country: data.country,
 				requiresNursing: data.requiresNursing,
 			};
 			return Object.values(requiredFields).every(
-				(value) => value !== undefined && value !== null && value !== ""
+				(value) =>
+					value !== undefined &&
+					value !== null &&
+					value !== "" &&
+					!(Array.isArray(value) && value.length === 0)
 			);
 		},
 		{

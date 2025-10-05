@@ -36,6 +36,7 @@ export async function POST(req: Request) {
 		const existingUserEnglish = await db.englishForm.findUnique({
 			where: { email: validatedFields.data.email },
 		});
+
 		const existingUserJapanese = await db.japaneseForm.findUnique({
 			where: { email: validatedFields.data.email },
 		});
@@ -84,11 +85,9 @@ export async function POST(req: Request) {
 					deleteError
 				);
 			}
-
 			return new NextResponse(
 				JSON.stringify({
 					error: "メール送信に失敗しました。しばらくしてからもう一度お試しください。",
-					details: "Email sending failed, please try again later.",
 				}),
 				{ status: 500 }
 			);

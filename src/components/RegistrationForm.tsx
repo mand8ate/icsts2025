@@ -56,6 +56,7 @@ function RegistrationFormWithReCapture({
 			lastName: "",
 			email: "",
 			phone: "",
+			attendanceDays: [],
 			country: "",
 			affiliation: "",
 			position: "",
@@ -139,7 +140,7 @@ function RegistrationFormWithReCapture({
 					<CardHeader>
 						<CardTitle className="text-2xl font-bold text-center">
 							International Conference on Science and Technology
-							for Sustainability 2024 <br />
+							for Sustainability 2025 <br />
 							Conference Registration Form
 						</CardTitle>
 						<div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-md">
@@ -315,9 +316,9 @@ function RegistrationFormWithReCapture({
 											type="text"
 											{...register("affiliation")}
 										/>
-										{errors.position && (
+										{errors.affiliation && (
 											<p className="text-sm text-red-500">
-												{errors.position.message}
+												{errors.affiliation.message}
 											</p>
 										)}
 									</div>
@@ -414,6 +415,87 @@ function RegistrationFormWithReCapture({
 										{errors.phone && (
 											<p className="text-sm text-red-500">
 												{errors.phone.message}
+											</p>
+										)}
+									</div>
+
+									{/* Attendance Days - Now positioned after phone number */}
+									<div className="space-y-2">
+										<div className="space-y-1">
+											<Label>
+												Which days will you attend?*
+											</Label>
+											<p className="text-sm text-muted-foreground">
+												Select all days you plan to
+												attend
+											</p>
+										</div>
+										<Controller
+											name="attendanceDays"
+											control={control}
+											render={({ field }) => (
+												<div className="space-y-2">
+													{[
+														"February 11",
+														"February 12",
+													].map((day) => (
+														<div
+															key={day}
+															className="flex items-center space-x-2"
+														>
+															<div className="relative">
+																<input
+																	type="checkbox"
+																	id={day}
+																	checked={field.value.includes(
+																		day
+																	)}
+																	onChange={() => {
+																		const newValue =
+																			field.value.includes(
+																				day
+																			)
+																				? field.value.filter(
+																						(
+																							item
+																						) =>
+																							item !==
+																							day
+																				  )
+																				: [
+																						...field.value,
+																						day,
+																				  ];
+																		field.onChange(
+																			newValue
+																		);
+																	}}
+																	className="appearance-none h-4 w-4 border border-primary rounded-sm bg-white checked:bg-primary checked:border-primary flex items-center justify-center focus:ring-2 focus:ring-ring focus:ring-offset-2"
+																/>
+																<Check
+																	className={`h-4 w-4 text-white absolute top-0 left-0 pointer-events-none ${
+																		field.value.includes(
+																			day
+																		)
+																			? "block"
+																			: "hidden"
+																	}`}
+																/>
+															</div>
+															<label
+																htmlFor={day}
+																className="text-sm font-normal"
+															>
+																{day}
+															</label>
+														</div>
+													))}
+												</div>
+											)}
+										/>
+										{errors.attendanceDays && (
+											<p className="text-sm text-red-500 mt-1.5">
+												{errors.attendanceDays.message}
 											</p>
 										)}
 									</div>

@@ -4,33 +4,22 @@ import { db } from "@/lib/db";
 export const dynamic = "force-dynamic";
 
 export default async function Page() {
-	// Create a formatter for Japan timezone
-	const formatter = new Intl.DateTimeFormat("en-US", {
-		timeZone: "Asia/Tokyo",
-		year: "numeric",
-		month: "2-digit",
-		day: "2-digit",
-		hour: "2-digit",
-		minute: "2-digit",
-		second: "2-digit",
-		hour12: false,
-	});
-
-	// Get current time in Japan
+	// Get current time
 	const now = new Date();
-	const [japanDate, japanTime] = formatter.format(now).split(", ");
 
-	// Parse the deadline in Japan time
-	const deadline = new Date("2025-01-30T12:00:00+09:00");
-	const deadlineFormatted = formatter.format(deadline);
+	// Convert to Japan timezone
+	const japanTime = new Date(
+		now.toLocaleString("en-US", { timeZone: "Asia/Tokyo" })
+	);
 
-	// Compare the formatted strings directly
-	const currentDateTime = `${japanDate}, ${japanTime}`;
-	const isAfterDeadline = currentDateTime > deadlineFormatted;
+	// Deadline in Japan time (January 30, 2027, 12:00 PM JST)
+	const deadline = new Date("2027-01-30T12:00:00");
 
-	// Debug logging (you can remove this after confirming it works)
-	console.log("Current Japan time:", currentDateTime);
-	console.log("Deadline:", deadlineFormatted);
+	const isAfterDeadline = japanTime > deadline;
+
+	// Debug logging
+	console.log("Current Japan time:", japanTime);
+	console.log("Deadline:", deadline);
 	console.log("Is after deadline:", isAfterDeadline);
 
 	if (isAfterDeadline) {

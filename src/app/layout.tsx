@@ -8,7 +8,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { LanguageProvider } from "@/context/LanguageContext";
 
 export const metadata: Metadata = {
-	title: `International Conference on Science and Technology for Sustainability 2024
+	title: `International Conference on Science and Technology for Sustainability 2025
 Conference Registration Form`,
 	description: "Register for the conference",
 };

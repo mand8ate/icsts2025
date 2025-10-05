@@ -10,6 +10,7 @@ type EnglishRegistrationData = {
 	country: string;
 	email: string;
 	phone: string;
+	attendanceDays: string[];
 	reasonsForConference: string[];
 	questionsForPanelists: string | null;
 	bringChildren: boolean;
@@ -28,6 +29,7 @@ export function generateEmailContent(data: EnglishRegistrationData) {
 	}
 
 	const reasonsText = data.reasonsForConference.join(", ");
+	const attendanceDaysText = data.attendanceDays.join(", ");
 	const fullTitle = data.title === "Other" ? data.otherTitle : data.title;
 
 	const formDetails = `
@@ -42,6 +44,7 @@ export function generateEmailContent(data: EnglishRegistrationData) {
   Country: ${data.country}
   Email: ${data.email}
   Phone: ${data.phone}
+  Attendance Days: ${attendanceDaysText}
   How did you learn about the conference: ${reasonsText}
   Bringing children: ${data.bringChildren ? "Yes" : "No"}
   Number of children: ${data.numberOfChildren || "Not applicable"}
@@ -50,15 +53,15 @@ export function generateEmailContent(data: EnglishRegistrationData) {
 
 	const mainContent = `
   [Automated Reply]
-  Subject: Registration Confirmation - International Conference on Science and Technology for Sustainability 2024
+  Subject: Registration Confirmation - International Conference on Science and Technology for Sustainability 2025
   
   Reference Number: ${data.referenceNumber}
   
-  Thank you for registering for the International Conference on Science and Technology for Sustainability 2024.
+  Thank you for registering for the International Conference on Science and Technology for Sustainability 2025.
   Please present this reference number at the reception desk on the day of the conference.
   
-  International Conference on Science and Technology for Sustainability 2024
-  Date & Time: Monday, February 3, 2025, 13:00-17:30 (Reception opens at 12:30)
+  International Conference on Science and Technology for Sustainability 2025
+  Date & Time: TBD
   Venue: Science Council of Japan　https://www.scj.go.jp/en/scj/access.html
   
   Please present this reference number along with a valid photo ID at the reception desk on the day of the conference`;
@@ -85,15 +88,15 @@ export function generateEmailContent(data: EnglishRegistrationData) {
 	const htmlContent = `
     <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; line-height: 1.6;">
       <pre style="white-space: pre-wrap; font-family: sans-serif;">[Automated Reply]
-  Subject: Registration Confirmation - International Conference on Science and Technology for Sustainability 2024
+  Subject: Registration Confirmation - International Conference on Science and Technology for Sustainability 2025
   
   Reference Number: ${data.referenceNumber}
   
-  Thank you for registering for the International Conference on Science and Technology for Sustainability 2024.
+  Thank you for registering for the International Conference on Science and Technology for Sustainability 2025.
   Please present this reference number at the reception desk on the day of the conference.
   
-  International Conference on Science and Technology for Sustainability 2024
-  Date & Time: Monday, February 3, 2025, 13:00-17:30 (Reception opens at 12:30)
+  International Conference on Science and Technology for Sustainability 2025
+  Date & Time: TBD
   Venue: Science Council of Japan　<a href="https://www.scj.go.jp/en/scj/access.html" target="_blank">https://www.scj.go.jp/en/scj/access.html</a>
   
   Please present this reference number along with a valid photo ID at the reception desk on the day of the conference.</pre>
@@ -167,6 +170,10 @@ export function generateEmailContent(data: EnglishRegistrationData) {
 			}</td>
           </tr>
           <tr>
+            <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Attendance Days:</strong></td>
+            <td style="padding: 8px; border-bottom: 1px solid #ddd;">${attendanceDaysText}</td>
+          </tr>
+          <tr>
             <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>How did you learn about the conference:</strong></td>
             <td style="padding: 8px; border-bottom: 1px solid #ddd;">${reasonsText}</td>
           </tr>
@@ -202,6 +209,6 @@ export function generateEmailContent(data: EnglishRegistrationData) {
 		text: textContent,
 		html: htmlContent,
 		subject:
-			"Registration Confirmation - International Conference on Science and Technology for Sustainability 2024",
+			"Registration Confirmation - International Conference on Science and Technology for Sustainability 2025",
 	};
 }

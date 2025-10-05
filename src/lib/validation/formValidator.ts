@@ -31,6 +31,9 @@ export const englishFormSchema = z
 			.string()
 			.min(1, "Phone number is required")
 			.max(20, "Phone number must be less than 20 characters"),
+		attendanceDays: z
+			.array(z.string())
+			.min(1, "Please select at least one attendance day"),
 		country: z
 			.string()
 			.min(1, "Country is required")
@@ -72,11 +75,16 @@ export const englishFormSchema = z
 				lastName: data.lastName,
 				email: data.email,
 				phone: data.phone,
+				attendanceDays: data.attendanceDays,
 				country: data.country,
 				requiresNursing: data.requiresNursing,
 			};
 			return Object.values(requiredFields).every(
-				(value) => value !== undefined && value !== null && value !== ""
+				(value) =>
+					value !== undefined &&
+					value !== null &&
+					value !== "" &&
+					!(Array.isArray(value) && value.length === 0)
 			);
 		},
 		{

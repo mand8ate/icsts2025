@@ -8,6 +8,7 @@ type RegistrationData = {
 	country: string;
 	email: string;
 	phone: string;
+	attendanceDays: string[];
 	reasonsForConference: string[];
 	questionsForPanelists: string | null;
 	bringChildren: boolean;
@@ -26,6 +27,7 @@ export function generateEmailContentJp(data: RegistrationData) {
 	}
 
 	const reasonsText = data.reasonsForConference.join("、");
+	const attendanceDaysText = data.attendanceDays.join("、");
 
 	const formDetails = `
   ============================================
@@ -38,6 +40,7 @@ export function generateEmailContentJp(data: RegistrationData) {
   国：${data.country}
   メールアドレス：${data.email}
   電話番号：${data.phone}
+  参加を希望する日にち：${attendanceDaysText}
   本会議を知った理由：${reasonsText}
   お子様の同伴：${data.bringChildren ? "あり" : "なし"}
   お子様の人数：${data.numberOfChildren || "該当なし"}
@@ -46,15 +49,15 @@ export function generateEmailContentJp(data: RegistrationData) {
 
 	const mainContent = `
   【自動返信メール】
-  タイトル：持続可能な社会のための科学と技術に関する国際会議2024受付完了
+  タイトル：持続可能な社会のための科学と技術に関する国際会議2025受付完了
   
   登録番号：${data.referenceNumber}
   
-  この度は持続可能な社会のための科学と技術に関する国際会議2024にお申込みいただきありがとうございます。
+  この度は持続可能な社会のための科学と技術に関する国際会議2025にお申込みいただきありがとうございます。
   当日は上記登録番号を会場受付にてご提出ください。
   
-  持続可能な社会のための科学と技術に関する国際会議2024
-  日時：2025年2月3日(月) 13:00-17:30 (受付開始12:30)
+  持続可能な社会のための科学と技術に関する国際会議2025
+  日時：未定
   会場：日本学術会議講堂　https://www.scj.go.jp/ja/other/info.html
   
   当日、顔写真付きの身分証をご持参くださいますようお願い申し上げます。`;
@@ -74,15 +77,15 @@ export function generateEmailContentJp(data: RegistrationData) {
 	const htmlContent = `
   <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; line-height: 1.6;">
     <pre style="white-space: pre-wrap; font-family: sans-serif;">【自動返信メール】
-  タイトル：持続可能な社会のための科学と技術に関する国際会議2024受付完了
+  タイトル：持続可能な社会のための科学と技術に関する国際会議2025受付完了
   
   登録番号：${data.referenceNumber}
   
-  この度は持続可能な社会のための科学と技術に関する国際会議2024にお申込みいただきありがとうございます。
+  この度は持続可能な社会のための科学と技術に関する国際会議2025にお申込みいただきありがとうございます。
   当日は上記登録番号を会場受付にてご提出ください。
   
-  持続可能な社会のための科学と技術に関する国際会議2024
-  日時：2025年2月3日(月) 13:00-17:30 (受付開始12:30)
+  持続可能な社会のための科学と技術に関する国際会議2025
+  日時：未定
   会場：日本学術会議講堂　<a href="https://www.scj.go.jp/ja/other/info.html" target="_blank">https://www.scj.go.jp/ja/other/info.html</a>
   
   当日、顔写真付きの身分証をご持参くださいますようお願い申し上げます。
@@ -146,6 +149,10 @@ export function generateEmailContentJp(data: RegistrationData) {
 			}</td>
         </tr>
         <tr>
+          <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>参加を希望する日にち：</strong></td>
+          <td style="padding: 8px; border-bottom: 1px solid #ddd;">${attendanceDaysText}</td>
+        </tr>
+        <tr>
           <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>本会議を知った理由：</strong></td>
           <td style="padding: 8px; border-bottom: 1px solid #ddd;">${reasonsText}</td>
         </tr>
@@ -180,6 +187,6 @@ export function generateEmailContentJp(data: RegistrationData) {
 	return {
 		text: textContent,
 		html: htmlContent,
-		subject: "持続可能な社会のための科学と技術に関する国際会議2024受付完了",
+		subject: "持続可能な社会のための科学と技術に関する国際会議2025受付完了",
 	};
 }

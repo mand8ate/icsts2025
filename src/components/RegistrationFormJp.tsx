@@ -54,6 +54,7 @@ function RegistrationFormWithReCapture({
 			furigana: "",
 			email: "",
 			phone: "",
+			attendanceDays: [],
 			country: undefined,
 			affiliation: "",
 			position: "",
@@ -130,7 +131,7 @@ function RegistrationFormWithReCapture({
 				<Card className="bg-white shadow-sm">
 					<CardHeader>
 						<CardTitle className="text-2xl font-bold text-center">
-							持続可能な社会のための科学と技術に関する国際会議2024{" "}
+							持続可能な社会のための科学と技術に関する国際会議2025{" "}
 							<br />
 							参加登録フォーム
 						</CardTitle>
@@ -329,6 +330,87 @@ function RegistrationFormWithReCapture({
 										{errors.phone && (
 											<p className="text-sm text-red-500">
 												{errors.phone.message}
+											</p>
+										)}
+									</div>
+
+									{/* Attendance Days - Now positioned after phone number */}
+									<div className="space-y-2">
+										<div className="space-y-1">
+											<Label>
+												参加を希望する日にち＊
+											</Label>
+											<p className="text-sm text-muted-foreground">
+												参加する日を選択してください（複数選択可）
+											</p>
+										</div>
+										<Controller
+											name="attendanceDays"
+											control={control}
+											render={({ field }) => (
+												<div className="space-y-2">
+													{["2月11日", "2月12日"].map(
+														(day) => (
+															<div
+																key={day}
+																className="flex items-center space-x-2"
+															>
+																<div className="relative">
+																	<input
+																		type="checkbox"
+																		id={day}
+																		checked={field.value.includes(
+																			day
+																		)}
+																		onChange={() => {
+																			const newValue =
+																				field.value.includes(
+																					day
+																				)
+																					? field.value.filter(
+																							(
+																								item
+																							) =>
+																								item !==
+																								day
+																					  )
+																					: [
+																							...field.value,
+																							day,
+																					  ];
+																			field.onChange(
+																				newValue
+																			);
+																		}}
+																		className="appearance-none h-4 w-4 border border-primary rounded-sm bg-white checked:bg-primary checked:border-primary flex items-center justify-center focus:ring-2 focus:ring-ring focus:ring-offset-2"
+																	/>
+																	<Check
+																		className={`h-4 w-4 text-white absolute top-0 left-0 pointer-events-none ${
+																			field.value.includes(
+																				day
+																			)
+																				? "block"
+																				: "hidden"
+																		}`}
+																	/>
+																</div>
+																<label
+																	htmlFor={
+																		day
+																	}
+																	className="text-sm font-normal"
+																>
+																	{day}
+																</label>
+															</div>
+														)
+													)}
+												</div>
+											)}
+										/>
+										{errors.attendanceDays && (
+											<p className="text-sm text-red-500 mt-1.5">
+												{errors.attendanceDays.message}
 											</p>
 										)}
 									</div>
@@ -605,6 +687,7 @@ function RegistrationFormWithReCapture({
 											</div>
 										</div>
 									) : null}
+
 									<div className="space-y-2">
 										<div className="flex items-start space-x-2">
 											<div className="relative pt-1">

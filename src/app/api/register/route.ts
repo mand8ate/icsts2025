@@ -12,7 +12,7 @@ export async function POST(req: Request) {
 	try {
 		const body = await req.json();
 		const { data, recaptchaToken } = body;
-		const validatedFields = englishFormSchema.safeParse(data);
+
 		const recaptchaResult = await verifyRecaptchaToken(recaptchaToken);
 		if (!recaptchaResult.success || recaptchaResult.score < 0.5) {
 			return new NextResponse(
@@ -23,6 +23,7 @@ export async function POST(req: Request) {
 			);
 		}
 
+		const validatedFields = englishFormSchema.safeParse(data);
 		if (!validatedFields.success) {
 			return new NextResponse(
 				JSON.stringify({
@@ -56,7 +57,7 @@ export async function POST(req: Request) {
 		const registration = await db.englishForm.create({
 			data: validatedFields.data,
 		});
-		// Then update with the formatted reference number
+
 		const updatedRegistration = await db.englishForm.update({
 			where: { id: registration.id },
 			data: {
@@ -88,19 +89,21 @@ export async function POST(req: Request) {
 					deleteError
 				);
 			}
-
 			return new NextResponse(
 				JSON.stringify({
-					error: "メール送信に失敗しました。しばらくしてからもう一度お試しください。",
-					details: "Email sending failed, please try again later.",
+					error: "Email sending failed. Please try again later.",
 				}),
 				{ status: 500 }
 			);
 		}
 
-		return new NextResponse(JSON.stringify({ message: "Successfull" }), {
-			status: 201,
-		});
+		return new NextResponse(
+			JSON.stringify({
+				message: "Registration successful",
+				referenceNumber: updatedRegistration.referenceNumber,
+			}),
+			{ status: 201 }
+		);
 	} catch (error) {
 		if (error instanceof z.ZodError) {
 			return new NextResponse(
@@ -108,7 +111,7 @@ export async function POST(req: Request) {
 				{ status: 400 }
 			);
 		}
-
+		console.error("Registration error:", error);
 		return new NextResponse(
 			JSON.stringify({ error: "Internal server error" }),
 			{ status: 500 }
