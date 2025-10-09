@@ -49,9 +49,9 @@ export const japaneseFormSchema = z
 		requiresNursing: z.boolean(),
 		consentToChildcarePolicy: z
 			.boolean()
-			.refine((value) => value === true, {
-				message: "保育に関する規約に同意する必要があります",
-			}),
+			// .refine((value) => value === true, {
+			// 	message: "保育に関する規約に同意する必要があります",
+			// }),
 		consentToPrivacyPolicy: z.boolean().refine((value) => value === true, {
 			message: "プライバシーポリシーに同意する必要があります",
 		}),
