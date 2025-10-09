@@ -818,10 +818,10 @@ function RegistrationFormWithReCapture({
 												childcare services, I confirm
 												the &quot;Information on
 												Nursery&quot; and agree to the
-												terms of use.*
-											</label>
+												terms of use.
+											</label> 
 										</div>
-										{errors.consentToChildcarePolicy && (
+										{/* {errors.consentToChildcarePolicy && (
 											<p className="text-sm text-red-500">
 												{
 													errors
@@ -829,7 +829,7 @@ function RegistrationFormWithReCapture({
 														.message
 												}
 											</p>
-										)}
+										)}  */}
 									</div>
 
 									<div className="space-y-2">

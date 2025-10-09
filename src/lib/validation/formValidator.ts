@@ -61,8 +61,8 @@ export const englishFormSchema = z
 		requiresNursing: z.boolean(),
 		consentToChildcarePolicy: z
 			.boolean()
-			.refine((value) => value === true, {
-				message: "You must accept the childcare policy",
+			// .refine((value) => value === true, {
+			// 	message: "You must accept the childcare policy",
 			}),
 		consentToPrivacyPolicy: z.boolean().refine((value) => value === true, {
 			message: "You must accept the privacy policy to register",

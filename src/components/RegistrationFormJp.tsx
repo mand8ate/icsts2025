@@ -713,10 +713,10 @@ function RegistrationFormWithReCapture({
 												htmlFor="consentToChildcarePolicy"
 												className="text-sm text-gray-600"
 											>
-												12歳以下のお子様を同伴する場合は、私（保護者）が同伴し、監督責任を負うことに同意します。託児サービスに申し込む場合は、託児利用規約を確認し、了承の上、申込を行います。＊
+												12歳以下のお子様を同伴する場合は、私（保護者）が同伴し、監督責任を負うことに同意します。託児サービスに申し込む場合は、託児利用規約を確認し、了承の上、申込を行います。
 											</label>
 										</div>
-										{errors.consentToChildcarePolicy && (
+										{/* {errors.consentToChildcarePolicy && (
 											<p className="text-sm text-red-500">
 												{
 													errors
@@ -724,7 +724,7 @@ function RegistrationFormWithReCapture({
 														.message
 												}
 											</p>
-										)}
+										)} */}
 									</div>
 
 									<div className="space-y-2">
