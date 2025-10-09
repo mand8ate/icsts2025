@@ -59,11 +59,7 @@ export const englishFormSchema = z
 		bringChildren: z.boolean(),
 		numberOfChildren: z.number().nullable(),
 		requiresNursing: z.boolean(),
-		consentToChildcarePolicy: z
-			.boolean()
-			// .refine((value) => value === true, {
-			// 	message: "You must accept the childcare policy",
-			}),
+		consentToChildcarePolicy: z.boolean(),
 		consentToPrivacyPolicy: z.boolean().refine((value) => value === true, {
 			message: "You must accept the privacy policy to register",
 		}),
@@ -105,6 +101,20 @@ export const englishFormSchema = z
 		{
 			message: "Please select a valid number of children (1-5)",
 			path: ["numberOfChildren"],
+		}
+	)
+	.refine(
+		(data) => {
+			// Only require childcare policy consent if they're using nursing facilities
+			if (data.requiresNursing === true) {
+				return data.consentToChildcarePolicy === true;
+			}
+			return true;
+		},
+		{
+			message:
+				"You must accept the childcare policy to use nursing facilities",
+			path: ["consentToChildcarePolicy"],
 		}
 	);
 

@@ -55,7 +55,7 @@ function RegistrationFormWithReCapture({
 			email: "",
 			phone: "",
 			attendanceDays: [],
-			country: undefined,
+			country: "",
 			affiliation: "",
 			position: "",
 			reasonsForConference: [],
@@ -637,7 +637,7 @@ function RegistrationFormWithReCapture({
 										)}
 									</div>
 
-									{!isChildcareCapacityReached ? (
+									{!isChildcareCapacityReached && (
 										<div className="space-y-2">
 											<div className="space-y-1">
 												<Label htmlFor="requiresNursing">
@@ -686,46 +686,49 @@ function RegistrationFormWithReCapture({
 												/>
 											</div>
 										</div>
-									) : null}
+									)}
 
-									<div className="space-y-2">
-										<div className="flex items-start space-x-2">
-											<div className="relative pt-1">
-												<input
-													type="checkbox"
-													id="consentToChildcarePolicy"
-													{...register(
-														"consentToChildcarePolicy"
-													)}
-													className="appearance-none h-4 w-4 border border-primary rounded-sm bg-white checked:bg-primary checked:border-primary flex items-center justify-center focus:ring-2 focus:ring-ring focus:ring-offset-2"
-												/>
-												<Check
-													className={`h-4 w-4 text-white absolute top-1 left-0 pointer-events-none ${
-														watch(
+									{/* Show childcare policy only when nursing is required */}
+									{watch("requiresNursing") && (
+										<div className="space-y-2">
+											<div className="flex items-start space-x-2">
+												<div className="relative pt-1">
+													<input
+														type="checkbox"
+														id="consentToChildcarePolicy"
+														{...register(
 															"consentToChildcarePolicy"
-														)
-															? "block"
-															: "hidden"
-													}`}
-												/>
+														)}
+														className="appearance-none h-4 w-4 border border-primary rounded-sm bg-white checked:bg-primary checked:border-primary flex items-center justify-center focus:ring-2 focus:ring-ring focus:ring-offset-2"
+													/>
+													<Check
+														className={`h-4 w-4 text-white absolute top-1 left-0 pointer-events-none ${
+															watch(
+																"consentToChildcarePolicy"
+															)
+																? "block"
+																: "hidden"
+														}`}
+													/>
+												</div>
+												<label
+													htmlFor="consentToChildcarePolicy"
+													className="text-sm text-gray-600"
+												>
+													12歳以下のお子様を同伴する場合は、私（保護者）が同伴し、監督責任を負うことに同意します。託児サービスに申し込む場合は、託児利用規約を確認し、了承の上、申込を行います。＊
+												</label>
 											</div>
-											<label
-												htmlFor="consentToChildcarePolicy"
-												className="text-sm text-gray-600"
-											>
-												12歳以下のお子様を同伴する場合は、私（保護者）が同伴し、監督責任を負うことに同意します。託児サービスに申し込む場合は、託児利用規約を確認し、了承の上、申込を行います。
-											</label>
+											{errors.consentToChildcarePolicy && (
+												<p className="text-sm text-red-500">
+													{
+														errors
+															.consentToChildcarePolicy
+															.message
+													}
+												</p>
+											)}
 										</div>
-										{/* {errors.consentToChildcarePolicy && (
-											<p className="text-sm text-red-500">
-												{
-													errors
-														.consentToChildcarePolicy
-														.message
-												}
-											</p>
-										)} */}
-									</div>
+									)}
 
 									<div className="space-y-2">
 										<div className="flex items-start space-x-2">
