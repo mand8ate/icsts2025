@@ -93,15 +93,15 @@ export const japaneseFormSchema = z
 	)
 	.refine(
 		(data) => {
-			// Only require childcare policy consent if they're using nursing facilities
-			if (data.requiresNursing === true) {
+			// Require childcare policy consent if bringing children OR using nursing facilities
+			if (data.bringChildren === true || data.requiresNursing === true) {
 				return data.consentToChildcarePolicy === true;
 			}
 			return true;
 		},
 		{
 			message:
-				"託児サービスを利用する場合は、保育に関する規約に同意する必要があります",
+				"お子様を同伴する場合、または託児サービスを利用する場合は、保育に関する規約に同意する必要があります",
 			path: ["consentToChildcarePolicy"],
 		}
 	);

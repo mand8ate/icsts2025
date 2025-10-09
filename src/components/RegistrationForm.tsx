@@ -785,8 +785,9 @@ function RegistrationFormWithReCapture({
 										</div>
 									)}
 
-									{/* Show childcare policy only when nursing is required */}
-									{watch("requiresNursing") && (
+									{/* Show childcare policy when bringing children OR using nursing */}
+									{(watch("bringChildren") ||
+										watch("requiresNursing")) && (
 										<div className="space-y-2">
 											<div className="flex items-start space-x-2">
 												<div className="relative pt-1">

@@ -105,15 +105,15 @@ export const englishFormSchema = z
 	)
 	.refine(
 		(data) => {
-			// Only require childcare policy consent if they're using nursing facilities
-			if (data.requiresNursing === true) {
+			// Require childcare policy consent if bringing children OR using nursing facilities
+			if (data.bringChildren === true || data.requiresNursing === true) {
 				return data.consentToChildcarePolicy === true;
 			}
 			return true;
 		},
 		{
 			message:
-				"You must accept the childcare policy to use nursing facilities",
+				"You must accept the childcare policy when bringing children or using nursing facilities",
 			path: ["consentToChildcarePolicy"],
 		}
 	);
