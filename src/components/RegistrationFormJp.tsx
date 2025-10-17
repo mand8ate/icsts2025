@@ -316,7 +316,7 @@ function RegistrationFormWithReCapture({
 												電話番号＊
 											</Label>
 											<p className="text-sm text-muted-foreground">
-												国番号を含む電話番号を入力してください（例：080-1234-5678）
+												国番号を含む電話番号を入力してください（例：+81 80-1234-5678）
 											</p>
 										</div>
 										<Input
@@ -338,7 +338,7 @@ function RegistrationFormWithReCapture({
 									<div className="space-y-2">
 										<div className="space-y-1">
 											<Label>
-												参加を希望する日にち＊
+												参加を希望する日程＊ （途中参加・途中退出可）
 											</Label>
 											<p className="text-sm text-muted-foreground">
 												参加する日を選択してください（複数選択可）
@@ -501,7 +501,7 @@ function RegistrationFormWithReCapture({
 									<div className="space-y-2">
 										<div className="space-y-1">
 											<Label htmlFor="questionsForPanelists">
-												パネリストへの質問
+												パネリストへの質問（500字以内）
 											</Label>
 											<p className="text-sm text-muted-foreground">
 												会議で取り上げてもらいたい質問があれば記入ください
@@ -692,6 +692,9 @@ function RegistrationFormWithReCapture({
 									{(watch("bringChildren") ||
 										watch("requiresNursing")) && (
 										<div className="space-y-2">
+											<p className="text-sm text-gray-700">
+											託児所の利用にあたっては、下記について同意をお願いいたします。
+											</p>
 											<div className="flex items-start space-x-2">
 												<div className="relative pt-1">
 													<input
@@ -732,6 +735,9 @@ function RegistrationFormWithReCapture({
 									)}
 
 									<div className="space-y-2">
+										<p className="text-sm text-gray-700">
+										フォーム送信前に下記を御確認いただき、同意をお願いいたします。
+										</p>
 										<div className="flex items-start space-x-2">
 											<div className="relative pt-1">
 												<input
