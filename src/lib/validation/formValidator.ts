@@ -18,6 +18,11 @@ export const englishFormSchema = z
 			.string()
 			.min(1, "First name is required")
 			.max(50, "First name must be less than 50 characters"),
+		middleName: z
+			.string()
+			.max(50, "Middle name must be less than 50 characters")
+			.optional()
+			.nullable(),
 		lastName: z
 			.string()
 			.min(1, "Last name is required")
@@ -53,7 +58,18 @@ export const englishFormSchema = z
 			.min(1, "Please select at least one option"),
 		questionsForPanelists: z
 			.string()
-			.max(500, "Questions must be less than 500 characters")
+			.refine(
+				(value) => {
+					// Skip check if empty
+					if (!value) return true;
+					// Count words (splitting by whitespace)
+					const wordCount = value.trim().split(/\s+/).length;
+					return wordCount <= 250;
+				},
+				{
+					message: "Questions must be less than 250 words",
+				}
+			)
 			.optional()
 			.nullable(),
 		bringChildren: z.boolean(),

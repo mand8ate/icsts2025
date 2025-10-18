@@ -53,6 +53,7 @@ function RegistrationFormWithReCapture({
 			title: undefined,
 			otherTitle: undefined,
 			firstName: "",
+			middleName: "",
 			lastName: "",
 			email: "",
 			phone: "",
@@ -279,6 +280,31 @@ function RegistrationFormWithReCapture({
 
 									<div className="space-y-2">
 										<div className="space-y-1">
+											<Label htmlFor="middleName">
+												Middle Name
+											</Label>
+											<p className="text-sm text-muted-foreground">
+												Enter your middle name
+												(optional)
+											</p>
+										</div>
+										<Input
+											id="middleName"
+											type="text"
+											className={getInputErrorClass(
+												!!errors.middleName
+											)}
+											{...register("middleName")}
+										/>
+										{errors.middleName && (
+											<p className="text-sm text-red-500">
+												{errors.middleName.message}
+											</p>
+										)}
+									</div>
+
+									<div className="space-y-2">
+										<div className="space-y-1">
 											<Label htmlFor="lastName">
 												Last Name*
 											</Label>
@@ -423,7 +449,8 @@ function RegistrationFormWithReCapture({
 									<div className="space-y-2">
 										<div className="space-y-1">
 											<Label>
-												Which days will you attend?* (Partial attendance acceptable)
+												Which days will you attend?*
+												(Partial attendance acceptable)
 											</Label>
 											<p className="text-sm text-muted-foreground">
 												Select all days you plan to
@@ -589,7 +616,8 @@ function RegistrationFormWithReCapture({
 									<div className="space-y-2">
 										<div className="space-y-1">
 											<Label htmlFor="questionsForPanelists">
-												Questions for Panelists (Within 250 words)
+												Questions for Panelists (Within
+												250 words)
 											</Label>
 											<p className="text-sm text-muted-foreground">
 												Please enter any questions you
@@ -736,7 +764,8 @@ function RegistrationFormWithReCapture({
 											<div className="space-y-1">
 												<Label htmlFor="requiresNursing">
 													Do you require the use of a
-													nursery?* (Limited Availability)
+													nursery?* (Limited
+													Availability)
 												</Label>
 												<p className="text-sm text-muted-foreground">
 													Select yes if you need
@@ -790,7 +819,8 @@ function RegistrationFormWithReCapture({
 										watch("requiresNursing")) && (
 										<div className="space-y-2">
 											<p className="text-sm text-gray-700">
-											Please agree to the following conditions to use the nursery.
+												Please agree to the following
+												conditions to use the nursery.
 											</p>
 											<div className="flex items-start space-x-2">
 												<div className="relative pt-1">
@@ -843,7 +873,8 @@ function RegistrationFormWithReCapture({
 
 									<div className="space-y-2">
 										<p className="text-sm text-gray-700">
-										Please review the following and agree before submitting the form.
+											Please review the following and
+											agree before submitting the form.
 										</p>
 										<div className="flex items-start space-x-2">
 											<div className="relative pt-1">

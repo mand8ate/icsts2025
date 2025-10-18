@@ -4,6 +4,7 @@ type EnglishRegistrationData = {
 	title: string | null;
 	otherTitle: string | null;
 	firstName: string;
+	middleName: string | null; // Added middleName field
 	lastName: string;
 	position: string | null;
 	affiliation: string | null;
@@ -38,6 +39,7 @@ export function generateEmailContent(data: EnglishRegistrationData) {
   ============================================
   Title: ${fullTitle || "Not provided"}
   First Name: ${data.firstName}
+  Middle Name: ${data.middleName || "Not provided"}
   Last Name: ${data.lastName}
   Affiliation: ${data.affiliation || "Not provided"}
   Position: ${data.position || "Not provided"}
@@ -131,6 +133,12 @@ export function generateEmailContent(data: EnglishRegistrationData) {
             <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>First Name:</strong></td>
             <td style="padding: 8px; border-bottom: 1px solid #ddd;">${
 				data.firstName
+			}</td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Middle Name:</strong></td>
+            <td style="padding: 8px; border-bottom: 1px solid #ddd;">${
+				data.middleName || "Not provided"
 			}</td>
           </tr>
           <tr>

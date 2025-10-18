@@ -37,6 +37,7 @@ model EnglishForm {
   title                    String?
   otherTitle               String?
   firstName                String
+  middleName               String?
   lastName                 String
   affiliation              String?
   position                 String?
