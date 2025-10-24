@@ -19,6 +19,7 @@ type EnglishRegistrationData = {
 	requiresNursing: boolean;
 	consentToPrivacyPolicy: boolean;
 	consentToChildcarePolicy: boolean;
+	consentToChildcareFacilityPolicy: boolean;
 	createdAt: Date;
 	updatedAt: Date;
 	id: string;
@@ -51,6 +52,10 @@ export function generateEmailContent(data: EnglishRegistrationData) {
   Bringing children: ${data.bringChildren ? "Yes" : "No"}
   Number of children: ${data.numberOfChildren || "Not applicable"}
   Childcare service required: ${data.requiresNursing ? "Yes" : "No"}
+  Consent to childcare policy: ${data.consentToChildcarePolicy ? "Yes" : "No"}
+  Consent to childcare facility policy: ${
+		data.consentToChildcareFacilityPolicy ? "Yes" : "No"
+  }
   Questions for Panelists: ${data.questionsForPanelists || "None"}`;
 
 	const mainContent = `
@@ -201,6 +206,18 @@ export function generateEmailContent(data: EnglishRegistrationData) {
             <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Childcare service required:</strong></td>
             <td style="padding: 8px; border-bottom: 1px solid #ddd;">${
 				data.requiresNursing ? "Yes" : "No"
+			}</td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Consent to childcare policy:</strong></td>
+            <td style="padding: 8px; border-bottom: 1px solid #ddd;">${
+				data.consentToChildcarePolicy ? "Yes" : "No"
+			}</td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Consent to childcare facility policy:</strong></td>
+            <td style="padding: 8px; border-bottom: 1px solid #ddd;">${
+				data.consentToChildcareFacilityPolicy ? "Yes" : "No"
 			}</td>
           </tr>
           <tr>

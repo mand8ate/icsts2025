@@ -64,6 +64,7 @@ function RegistrationFormWithReCapture({
 			numberOfChildren: null,
 			requiresNursing: false,
 			consentToChildcarePolicy: false,
+			consentToChildcareFacilityPolicy: false,
 			consentToPrivacyPolicy: false,
 		},
 	});
@@ -316,7 +317,8 @@ function RegistrationFormWithReCapture({
 												電話番号＊
 											</Label>
 											<p className="text-sm text-muted-foreground">
-												国番号を含む電話番号を入力してください（例：+81 80-1234-5678）
+												国番号を含む電話番号を入力してください（例：+81
+												80-1234-5678）
 											</p>
 										</div>
 										<Input
@@ -338,7 +340,8 @@ function RegistrationFormWithReCapture({
 									<div className="space-y-2">
 										<div className="space-y-1">
 											<Label>
-												参加を希望する日程＊ （途中参加・途中退出可）
+												参加を希望する日程＊
+												（途中参加・途中退出可）
 											</Label>
 											<p className="text-sm text-muted-foreground">
 												参加する日を選択してください（複数選択可）
@@ -693,7 +696,7 @@ function RegistrationFormWithReCapture({
 										watch("requiresNursing")) && (
 										<div className="space-y-2">
 											<p className="text-sm text-gray-700">
-											託児所の利用にあたっては、下記について同意をお願いいたします。
+												託児所の利用にあたっては、下記について同意をお願いいたします。
 											</p>
 											<div className="flex items-start space-x-2">
 												<div className="relative pt-1">
@@ -734,9 +737,51 @@ function RegistrationFormWithReCapture({
 										</div>
 									)}
 
+									{/* Show childcare facility policy ONLY when using nursing */}
+									{watch("requiresNursing") && (
+										<div className="space-y-2">
+											<div className="flex items-start space-x-2">
+												<div className="relative pt-1">
+													<input
+														type="checkbox"
+														id="consentToChildcareFacilityPolicy"
+														{...register(
+															"consentToChildcareFacilityPolicy"
+														)}
+														className="appearance-none h-4 w-4 border border-primary rounded-sm bg-white checked:bg-primary checked:border-primary flex items-center justify-center focus:ring-2 focus:ring-ring focus:ring-offset-2"
+													/>
+													<Check
+														className={`h-4 w-4 text-white absolute top-1 left-0 pointer-events-none ${
+															watch(
+																"consentToChildcareFacilityPolicy"
+															)
+																? "block"
+																: "hidden"
+														}`}
+													/>
+												</div>
+												<label
+													htmlFor="consentToChildcareFacilityPolicy"
+													className="text-sm text-gray-600"
+												>
+													「託児利用規約」を確認、了承しました。＊
+												</label>
+											</div>
+											{errors.consentToChildcareFacilityPolicy && (
+												<p className="text-sm text-red-500">
+													{
+														errors
+															.consentToChildcareFacilityPolicy
+															.message
+													}
+												</p>
+											)}
+										</div>
+									)}
+
 									<div className="space-y-2">
 										<p className="text-sm text-gray-700">
-										フォーム送信前に下記を御確認いただき、同意をお願いいたします。
+											フォーム送信前に下記を御確認いただき、同意をお願いいたします。
 										</p>
 										<div className="flex items-start space-x-2">
 											<div className="relative pt-1">

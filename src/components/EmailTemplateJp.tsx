@@ -15,6 +15,7 @@ type RegistrationData = {
 	numberOfChildren: number | null;
 	requiresNursing: boolean;
 	consentToChildcarePolicy: boolean;
+	consentToChildcareFacilityPolicy: boolean;
 	consentToPrivacyPolicy: boolean;
 	createdAt: Date;
 	updatedAt: Date;
@@ -45,6 +46,12 @@ export function generateEmailContentJp(data: RegistrationData) {
   お子様の同伴：${data.bringChildren ? "あり" : "なし"}
   お子様の人数：${data.numberOfChildren || "該当なし"}
   託児所の利用希望：${data.requiresNursing ? "あり" : "なし"}
+  保育に関する規約への同意：${
+		data.consentToChildcarePolicy ? "同意" : "同意なし"
+  }
+  託児利用規約への同意：${
+		data.consentToChildcareFacilityPolicy ? "同意" : "同意なし"
+  }
   パネリストへの質問：${data.questionsForPanelists || "なし"}`;
 
 	const mainContent = `
@@ -172,6 +179,18 @@ export function generateEmailContentJp(data: RegistrationData) {
           <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>託児所の利用希望：</strong></td>
           <td style="padding: 8px; border-bottom: 1px solid #ddd;">${
 				data.requiresNursing ? "あり" : "なし"
+			}</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>保育に関する規約への同意：</strong></td>
+          <td style="padding: 8px; border-bottom: 1px solid #ddd;">${
+				data.consentToChildcarePolicy ? "同意" : "同意なし"
+			}</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>託児利用規約への同意：</strong></td>
+          <td style="padding: 8px; border-bottom: 1px solid #ddd;">${
+				data.consentToChildcareFacilityPolicy ? "同意" : "同意なし"
 			}</td>
         </tr>
         <tr>

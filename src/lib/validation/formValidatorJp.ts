@@ -48,6 +48,7 @@ export const japaneseFormSchema = z
 		numberOfChildren: z.number().nullable(),
 		requiresNursing: z.boolean(),
 		consentToChildcarePolicy: z.boolean(),
+		consentToChildcareFacilityPolicy: z.boolean(),
 		consentToPrivacyPolicy: z.boolean().refine((value) => value === true, {
 			message: "プライバシーポリシーに同意する必要があります",
 		}),
@@ -103,6 +104,19 @@ export const japaneseFormSchema = z
 			message:
 				"お子様を同伴する場合、または託児サービスを利用する場合は、保育に関する規約に同意する必要があります",
 			path: ["consentToChildcarePolicy"],
+		}
+	)
+	.refine(
+		(data) => {
+			// Require childcare facility policy consent only if using nursing facilities
+			if (data.requiresNursing === true) {
+				return data.consentToChildcareFacilityPolicy === true;
+			}
+			return true;
+		},
+		{
+			message: "託児利用規約を確認し、了承する必要があります",
+			path: ["consentToChildcareFacilityPolicy"],
 		}
 	);
 
