@@ -764,9 +764,12 @@ function RegistrationFormWithReCapture({
 													htmlFor="consentToChildcareFacilityPolicy"
 													className="text-sm text-gray-600"
 												>
-													「託児利用規約」（後日文章が届きます）を確認、了承しました。＊
+													託児利用規約を確認、了承いたしました。
 												</label>
 											</div>
+											<p className="text-sm text-muted-foreground pl-6">
+												※託児所の利用申込は、本フォームへの登録完了後、返信メールに記載されている託児申込専用フォームより改めてお申込みください。
+											</p>
 											{errors.consentToChildcareFacilityPolicy && (
 												<p className="text-sm text-red-500">
 													{

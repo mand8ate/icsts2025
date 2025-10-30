@@ -901,9 +901,17 @@ function RegistrationFormWithReCapture({
 												>
 													I have reviewed and agree to
 													accept the childcare
-													facility terms.*
+													facility terms.
 												</label>
 											</div>
+											<p className="text-sm text-muted-foreground pl-6">
+												*To apply for nursery services,
+												please complete the dedicated
+												nursery application form
+												provided in the confirmation
+												email after registering through
+												this form.
+											</p>
 											{errors.consentToChildcareFacilityPolicy && (
 												<p className="text-sm text-red-500">
 													{
