@@ -67,7 +67,6 @@ function RegistrationFormWithReCapture({
 			numberOfChildren: null,
 			requiresNursing: false,
 			consentToChildcarePolicy: false,
-			consentToChildcareFacilityPolicy: false,
 			consentToPrivacyPolicy: false,
 		},
 	});
@@ -869,41 +868,6 @@ function RegistrationFormWithReCapture({
 													}
 												</p>
 											)}
-										</div>
-									)}
-
-									{/* Show childcare facility policy ONLY when using nursing */}
-									{watch("requiresNursing") && (
-										<div className="space-y-2">
-											<div className="flex items-start space-x-2">
-												<div className="relative pt-1">
-													<input
-														type="checkbox"
-														id="consentToChildcareFacilityPolicy"
-														{...register(
-															"consentToChildcareFacilityPolicy"
-														)}
-														className="appearance-none h-4 w-4 border border-primary rounded-sm bg-white checked:bg-primary checked:border-primary flex items-center justify-center focus:ring-2 focus:ring-ring focus:ring-offset-2"
-													/>
-													<Check
-														className={`h-4 w-4 text-white absolute top-1 left-0 pointer-events-none ${
-															watch(
-																"consentToChildcareFacilityPolicy"
-															)
-																? "block"
-																: "hidden"
-														}`}
-													/>
-												</div>
-												<label
-													htmlFor="consentToChildcareFacilityPolicy"
-													className="text-sm text-gray-600"
-												>
-													I have reviewed and agree to
-													accept the childcare
-													facility terms.
-												</label>
-											</div>
 											<p className="text-sm text-muted-foreground pl-6">
 												*To apply for nursery services,
 												please complete the dedicated
@@ -912,15 +876,6 @@ function RegistrationFormWithReCapture({
 												email after registering through
 												this form.
 											</p>
-											{errors.consentToChildcareFacilityPolicy && (
-												<p className="text-sm text-red-500">
-													{
-														errors
-															.consentToChildcareFacilityPolicy
-															.message
-													}
-												</p>
-											)}
 										</div>
 									)}
 

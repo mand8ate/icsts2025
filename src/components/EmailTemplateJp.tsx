@@ -15,7 +15,6 @@ type RegistrationData = {
 	numberOfChildren: number | null;
 	requiresNursing: boolean;
 	consentToChildcarePolicy: boolean;
-	consentToChildcareFacilityPolicy: boolean;
 	consentToPrivacyPolicy: boolean;
 	createdAt: Date;
 	updatedAt: Date;
@@ -49,9 +48,6 @@ export function generateEmailContentJp(data: RegistrationData) {
   保育に関する規約への同意：${
 		data.consentToChildcarePolicy ? "同意" : "同意なし"
   }
-  託児利用規約への同意：${
-		data.consentToChildcareFacilityPolicy ? "同意" : "同意なし"
-  }
   パネリストへの質問：${data.questionsForPanelists || "なし"}`;
 
 	const mainContent = `
@@ -64,18 +60,20 @@ export function generateEmailContentJp(data: RegistrationData) {
   当日は上記登録番号を会場受付にてご提出ください。
   
   持続可能な社会のための科学と技術に関する国際会議2025
-  日時：未定
+  日時：2026年2月11日、12日
   会場：日本学術会議講堂　https://www.scj.go.jp/ja/other/info.html
   
-  当日、顔写真付きの身分証をご持参くださいますようお願い申し上げます。`;
+  当日、顔写真付きの身分証をご持参くださいますようお願い申し上げます。
+  (旧姓でご登録の場合は、ご本人確認のため、顔写真つき身分証に併せて、名刺など（登録した苗字が分かるもの）をお持ちください)`;
 
 	const nursingInfo = data.requiresNursing
 		? `
   ============================================
   託児所サービスについて（先着順）
   
-  託児所サービスをご希望の方は、以下のフォームをご確認の上、ご記入ください：
-  https://drive.google.com/file/d/1I4wLpJ0VtJYfPFonMAQy939ZTO-LosDW/view?usp=sharing
+  託児所サービスをご希望の方は、以下のフォームをご確認の上、ご記入ください。
+  
+  託児所サービス申込フォーム：${process.env.NEXT_PUBLIC_BASE_URL}/files/nurseryInformationJP.pdf
   ============================================`
 		: "";
 
@@ -92,19 +90,19 @@ export function generateEmailContentJp(data: RegistrationData) {
   当日は上記登録番号を会場受付にてご提出ください。
   
   持続可能な社会のための科学と技術に関する国際会議2025
-  日時：未定
+  日時：2026年2月11日、12日
   会場：日本学術会議講堂　<a href="https://www.scj.go.jp/ja/other/info.html" target="_blank">https://www.scj.go.jp/ja/other/info.html</a>
   
   当日、顔写真付きの身分証をご持参くださいますようお願い申し上げます。
-  (旧姓でご登録の場合は、ご本人確認のため、顔写真つき身分証に併せて、名刺など（登録した苗字が分かるもの）をお持ちください）</pre>
+  (旧姓でご登録の場合は、ご本人確認のため、顔写真つき身分証に併せて、名刺など（登録した苗字が分かるもの）をお持ちください)</pre>
   
     ${
 		data.requiresNursing
 			? `
     <div style="margin-top: 20px; padding: 15px; border: 1px solid #ccc; background-color: #f9f9f9;">
       <p style="font-weight: bold;">託児所サービスについて（先着順）</p>
-      <p>託児所サービスをご希望の方は、以下のフォームをご確認の上、ご記入ください：<br>
-      <a href="https://drive.google.com/file/d/1I4wLpJ0VtJYfPFonMAQy939ZTO-LosDW/view?usp=sharing" target="_blank">託児所サービス申込フォーム</a></p>
+      <p>託児所サービスをご希望の方は、以下のフォームをご確認の上、ご記入ください。</p>
+      <p><a href="${process.env.NEXT_PUBLIC_BASE_URL}/files/childcare-form-jp.pdf" target="_blank" style="color: #0066cc; text-decoration: underline;">託児所サービス申込フォーム</a></p>
     </div>
     `
 			: ""
@@ -185,12 +183,6 @@ export function generateEmailContentJp(data: RegistrationData) {
           <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>保育に関する規約への同意：</strong></td>
           <td style="padding: 8px; border-bottom: 1px solid #ddd;">${
 				data.consentToChildcarePolicy ? "同意" : "同意なし"
-			}</td>
-        </tr>
-        <tr>
-          <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>託児利用規約への同意：</strong></td>
-          <td style="padding: 8px; border-bottom: 1px solid #ddd;">${
-				data.consentToChildcareFacilityPolicy ? "同意" : "同意なし"
 			}</td>
         </tr>
         <tr>

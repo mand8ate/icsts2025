@@ -8,54 +8,52 @@ datasource db {
 }
 
 model JapaneseForm {
-  id                               String   @id @default(uuid())
-  incrementId                      Int      @unique @default(autoincrement())
-  referenceNumber                  String?  @unique
-  fullName                         String
-  furigana                         String
-  affiliation                      String?
-  position                         String?
-  country                          String
-  email                            String   @unique
-  phone                            String
-  attendanceDays                   String[]
-  reasonsForConference             String[]
-  questionsForPanelists            String?
-  bringChildren                    Boolean  @default(false)
-  numberOfChildren                 Int?
-  requiresNursing                  Boolean  @default(false)
-  consentToChildcarePolicy         Boolean  @default(false)
-  consentToChildcareFacilityPolicy Boolean  @default(false)
-  consentToPrivacyPolicy           Boolean  @default(false)
-  createdAt                        DateTime @default(now())
-  updatedAt                        DateTime @updatedAt
+  id                       String   @id @default(uuid())
+  incrementId              Int      @unique @default(autoincrement())
+  referenceNumber          String?  @unique
+  fullName                 String
+  furigana                 String
+  affiliation              String?
+  position                 String?
+  country                  String
+  email                    String   @unique
+  phone                    String
+  attendanceDays           String[]
+  reasonsForConference     String[]
+  questionsForPanelists    String?
+  bringChildren            Boolean  @default(false)
+  numberOfChildren         Int?
+  requiresNursing          Boolean  @default(false)
+  consentToChildcarePolicy Boolean  @default(false)
+  consentToPrivacyPolicy   Boolean  @default(false)
+  createdAt                DateTime @default(now())
+  updatedAt                DateTime @updatedAt
 }
 
 model EnglishForm {
-  id                               String   @id @default(uuid())
-  incrementId                      Int      @unique @default(autoincrement())
-  referenceNumber                  String?  @unique
-  title                            String?
-  otherTitle                       String?
-  firstName                        String
-  middleName                       String?
-  lastName                         String
-  affiliation                      String?
-  position                         String?
-  country                          String
-  email                            String   @unique
-  phone                            String
-  attendanceDays                   String[]
-  reasonsForConference             String[]
-  questionsForPanelists            String?
-  bringChildren                    Boolean  @default(false)
-  numberOfChildren                 Int?
-  requiresNursing                  Boolean  @default(false)
-  consentToChildcarePolicy         Boolean  @default(false)
-  consentToChildcareFacilityPolicy Boolean  @default(false)
-  consentToPrivacyPolicy           Boolean  @default(false)
-  createdAt                        DateTime @default(now())
-  updatedAt                        DateTime @updatedAt
+  id                       String   @id @default(uuid())
+  incrementId              Int      @unique @default(autoincrement())
+  referenceNumber          String?  @unique
+  title                    String?
+  otherTitle               String?
+  firstName                String
+  middleName               String?
+  lastName                 String
+  affiliation              String?
+  position                 String?
+  country                  String
+  email                    String   @unique
+  phone                    String
+  attendanceDays           String[]
+  reasonsForConference     String[]
+  questionsForPanelists    String?
+  bringChildren            Boolean  @default(false)
+  numberOfChildren         Int?
+  requiresNursing          Boolean  @default(false)
+  consentToChildcarePolicy Boolean  @default(false)
+  consentToPrivacyPolicy   Boolean  @default(false)
+  createdAt                DateTime @default(now())
+  updatedAt                DateTime @updatedAt
 }
 
 model ChildcareCapacity {

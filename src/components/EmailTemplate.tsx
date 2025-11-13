@@ -4,7 +4,7 @@ type EnglishRegistrationData = {
 	title: string | null;
 	otherTitle: string | null;
 	firstName: string;
-	middleName: string | null; // Added middleName field
+	middleName: string | null;
 	lastName: string;
 	position: string | null;
 	affiliation: string | null;
@@ -19,7 +19,6 @@ type EnglishRegistrationData = {
 	requiresNursing: boolean;
 	consentToPrivacyPolicy: boolean;
 	consentToChildcarePolicy: boolean;
-	consentToChildcareFacilityPolicy: boolean;
 	createdAt: Date;
 	updatedAt: Date;
 	id: string;
@@ -53,9 +52,6 @@ export function generateEmailContent(data: EnglishRegistrationData) {
   Number of children: ${data.numberOfChildren || "Not applicable"}
   Childcare service required: ${data.requiresNursing ? "Yes" : "No"}
   Consent to childcare policy: ${data.consentToChildcarePolicy ? "Yes" : "No"}
-  Consent to childcare facility policy: ${
-		data.consentToChildcareFacilityPolicy ? "Yes" : "No"
-  }
   Questions for Panelists: ${data.questionsForPanelists || "None"}`;
 
 	const mainContent = `
@@ -68,7 +64,7 @@ export function generateEmailContent(data: EnglishRegistrationData) {
   Please present this reference number at the reception desk on the day of the conference.
   
   International Conference on Science and Technology for Sustainability 2025
-  Date & Time: TBD
+  Date & Time: February 11th, 12th, 2026
   Venue: Science Council of Japan　https://www.scj.go.jp/en/scj/access.html
   
   Please present this reference number along with a valid photo ID at the reception desk on the day of the conference`;
@@ -78,15 +74,9 @@ export function generateEmailContent(data: EnglishRegistrationData) {
   ============================================
   Childcare Service Information (First-come, first-served basis)
   
-  For those who require childcare services:
-  Please make a reservation by E-mail, including the information below.
-  We will reply by e-mail to confirm your reservation with an application form attached.
-  Please fill out the form and bring it on the actual day of your use.
+  Those who wish to use the childcare service are kindly requested to review and complete the following form.
   
-  ■ E-mail: yoyaku@alpha-co.com
-  
-  For more information, please check the following form:
-  https://drive.google.com/file/d/1xlFUiMJlN6DtsN13nRNdbPojx4aTBDHO/view?usp=sharing
+  Childcare Service Application Form: ${process.env.NEXT_PUBLIC_BASE_URL}/files/nurseryInformation.pdf
   ============================================`
 		: "";
 
@@ -103,7 +93,7 @@ export function generateEmailContent(data: EnglishRegistrationData) {
   Please present this reference number at the reception desk on the day of the conference.
   
   International Conference on Science and Technology for Sustainability 2025
-  Date & Time: TBD
+  Date & Time: February 11th, 12th, 2026
   Venue: Science Council of Japan　<a href="https://www.scj.go.jp/en/scj/access.html" target="_blank">https://www.scj.go.jp/en/scj/access.html</a>
   
   Please present this reference number along with a valid photo ID at the reception desk on the day of the conference.</pre>
@@ -113,13 +103,8 @@ export function generateEmailContent(data: EnglishRegistrationData) {
 				? `
       <div style="margin-top: 20px; padding: 15px; border: 1px solid #ccc; background-color: #f9f9f9;">
         <p style="font-weight: bold;">Childcare Service Information (First-come, first-served basis)</p>
-        <p>For those who require childcare services:<br>
-        Please make a reservation by E-mail, including the information below.<br>
-        We will reply by e-mail to confirm your reservation with an application form attached.<br>
-        Please fill out the form and bring it on the actual day of your use.</p>
-        <p>■ E-mail: <a href="mailto:yoyaku@alpha-co.com">yoyaku@alpha-co.com</a></p>
-        <p>For more information, please check the following form:<br>
-        <a href="https://drive.google.com/file/d/1xlFUiMJlN6DtsN13nRNdbPojx4aTBDHO/view?usp=sharing" target="_blank">Childcare Service Application Form</a></p>
+        <p>Those who wish to use the childcare service are kindly requested to review and complete the following form.</p>
+        <p><a href="${process.env.NEXT_PUBLIC_BASE_URL}/files/childcare-form-en.pdf" target="_blank" style="color: #0066cc; text-decoration: underline;">Childcare Service Application Form</a></p>
       </div>
       `
 				: ""
@@ -212,12 +197,6 @@ export function generateEmailContent(data: EnglishRegistrationData) {
             <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Consent to childcare policy:</strong></td>
             <td style="padding: 8px; border-bottom: 1px solid #ddd;">${
 				data.consentToChildcarePolicy ? "Yes" : "No"
-			}</td>
-          </tr>
-          <tr>
-            <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>Consent to childcare facility policy:</strong></td>
-            <td style="padding: 8px; border-bottom: 1px solid #ddd;">${
-				data.consentToChildcareFacilityPolicy ? "Yes" : "No"
 			}</td>
           </tr>
           <tr>

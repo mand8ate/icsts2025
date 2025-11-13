@@ -64,7 +64,6 @@ function RegistrationFormWithReCapture({
 			numberOfChildren: null,
 			requiresNursing: false,
 			consentToChildcarePolicy: false,
-			consentToChildcareFacilityPolicy: false,
 			consentToPrivacyPolicy: false,
 		},
 	});
@@ -734,51 +733,9 @@ function RegistrationFormWithReCapture({
 													}
 												</p>
 											)}
-										</div>
-									)}
-
-									{/* Show childcare facility policy ONLY when using nursing */}
-									{watch("requiresNursing") && (
-										<div className="space-y-2">
-											<div className="flex items-start space-x-2">
-												<div className="relative pt-1">
-													<input
-														type="checkbox"
-														id="consentToChildcareFacilityPolicy"
-														{...register(
-															"consentToChildcareFacilityPolicy"
-														)}
-														className="appearance-none h-4 w-4 border border-primary rounded-sm bg-white checked:bg-primary checked:border-primary flex items-center justify-center focus:ring-2 focus:ring-ring focus:ring-offset-2"
-													/>
-													<Check
-														className={`h-4 w-4 text-white absolute top-1 left-0 pointer-events-none ${
-															watch(
-																"consentToChildcareFacilityPolicy"
-															)
-																? "block"
-																: "hidden"
-														}`}
-													/>
-												</div>
-												<label
-													htmlFor="consentToChildcareFacilityPolicy"
-													className="text-sm text-gray-600"
-												>
-													託児利用規約を確認、了承いたしました。
-												</label>
-											</div>
 											<p className="text-sm text-muted-foreground pl-6">
 												※託児所の利用申込は、本フォームへの登録完了後、返信メールに記載されている託児申込専用フォームより改めてお申込みください。
 											</p>
-											{errors.consentToChildcareFacilityPolicy && (
-												<p className="text-sm text-red-500">
-													{
-														errors
-															.consentToChildcareFacilityPolicy
-															.message
-													}
-												</p>
-											)}
 										</div>
 									)}
 
