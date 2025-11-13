@@ -102,7 +102,7 @@ export function generateEmailContentJp(data: RegistrationData) {
     <div style="margin-top: 20px; padding: 15px; border: 1px solid #ccc; background-color: #f9f9f9;">
       <p style="font-weight: bold;">託児所サービスについて（先着順）</p>
       <p>託児所サービスをご希望の方は、以下のフォームをご確認の上、ご記入ください。</p>
-      <p><a href="${process.env.NEXT_PUBLIC_BASE_URL}/files/childcare-form-jp.pdf" target="_blank" style="color: #0066cc; text-decoration: underline;">託児所サービス申込フォーム</a></p>
+      <p><a href="${process.env.NEXT_PUBLIC_BASE_URL}/files/nurseryInformationJP.pdf" target="_blank" style="color: #0066cc; text-decoration: underline;">託児所サービス申込フォーム</a></p>
     </div>
     `
 			: ""
