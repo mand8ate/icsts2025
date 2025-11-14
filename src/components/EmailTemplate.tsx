@@ -74,9 +74,9 @@ export function generateEmailContent(data: EnglishRegistrationData) {
   ============================================
   Childcare Service Information (First-come, first-served basis)
   
-  Those who wish to use the childcare service are kindly requested to review and complete the following form.
+  Those who wish to use the childcare service should review the information below before applying.
   
-  Childcare Service Application Form: ${process.env.NEXT_PUBLIC_BASE_URL}/files/nurseryInformation.pdf
+  Nursery Information and Application: ${process.env.NEXT_PUBLIC_BASE_URL}/files/nurseryInformation.pdf
   ============================================`
 		: "";
 
@@ -103,8 +103,8 @@ export function generateEmailContent(data: EnglishRegistrationData) {
 				? `
       <div style="margin-top: 20px; padding: 15px; border: 1px solid #ccc; background-color: #f9f9f9;">
         <p style="font-weight: bold;">Childcare Service Information (First-come, first-served basis)</p>
-        <p>Those who wish to use the childcare service are kindly requested to review and complete the following form.</p>
-        <p><a href="${process.env.NEXT_PUBLIC_BASE_URL}/files/childcare-form-en.pdf" target="_blank" style="color: #0066cc; text-decoration: underline;">Childcare Service Application Form</a></p>
+        <p>Those who wish to use the childcare service should review the information below before applying.</p>
+        <p><a href="${process.env.NEXT_PUBLIC_BASE_URL}/files/nurseryInformation.pdf" target="_blank" style="color: #0066cc; text-decoration: underline;">Nursery Information and Application</a></p>
       </div>
       `
 				: ""

@@ -338,7 +338,7 @@ function RegistrationFormWithReCapture({
 											</p>
 										</div>
 										<Input
-											id="affilitation"
+											id="affiliation"
 											type="text"
 											{...register("affiliation")}
 										/>
@@ -820,7 +820,7 @@ function RegistrationFormWithReCapture({
 										<div className="space-y-2">
 											<p className="text-sm text-gray-700">
 												Please agree to the following
-												conditions to use the nursery.
+												conditions.
 											</p>
 											<div className="flex items-start space-x-2">
 												<div className="relative pt-1">
@@ -851,12 +851,12 @@ function RegistrationFormWithReCapture({
 													I, a parent or guardian,
 													agree to be responsible for
 													the supervision of the
-													child. If I apply for
-													childcare services, I
-													confirm the
-													&quot;Information on
-													Nursery&quot; and agree to
-													the terms of use.*
+													child. <br></br>※If I apply
+													for childcare services, I
+													confirm the information on
+													childcare included in the
+													confirmation email and agree
+													to the terms of use.*
 												</label>
 											</div>
 											{errors.consentToChildcarePolicy && (
@@ -868,14 +868,6 @@ function RegistrationFormWithReCapture({
 													}
 												</p>
 											)}
-											<p className="text-sm text-muted-foreground pl-6">
-												*To apply for nursery services,
-												please complete the dedicated
-												nursery application form
-												provided in the confirmation
-												email after registering through
-												this form.
-											</p>
 										</div>
 									)}
 

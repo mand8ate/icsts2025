@@ -721,7 +721,9 @@ function RegistrationFormWithReCapture({
 													htmlFor="consentToChildcarePolicy"
 													className="text-sm text-gray-600"
 												>
-													12歳以下のお子様を同伴する場合は、私（保護者）が同伴し、監督責任を負うことに同意します。託児サービスに申し込む場合は、託児利用規約を確認し、了承の上、申込を行います。＊
+													12歳以下のお子様を同伴する場合は、私（保護者）が同伴し、監督責任を負うことに同意します。
+													<br></br>
+													※託児所の利用申込は、本フォームへの登録完了後、返信メールに記載されている託児申込専用フォームより改めてお申込みください。
 												</label>
 											</div>
 											{errors.consentToChildcarePolicy && (
@@ -733,9 +735,6 @@ function RegistrationFormWithReCapture({
 													}
 												</p>
 											)}
-											<p className="text-sm text-muted-foreground pl-6">
-												※託児所の利用申込は、本フォームへの登録完了後、返信メールに記載されている託児申込専用フォームより改めてお申込みください。
-											</p>
 										</div>
 									)}
 
