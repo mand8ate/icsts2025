@@ -13,7 +13,7 @@ export default async function Page() {
 	);
 
 	// Deadline in Japan time (January 30, 2027, 12:00 PM JST)
-	const deadline = new Date("2027-01-30T12:00:00");
+	const deadline = new Date("2026-02-11T10:00:00");
 
 	const isAfterDeadline = japanTime > deadline;
 
